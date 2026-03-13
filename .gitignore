@@ -1,5 +1,7 @@
 build/
 model.txt
 data.csv
+token.txt
 *.pdf
 .vscode/
+nnetwork.h
