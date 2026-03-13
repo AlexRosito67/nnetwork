@@ -78,5 +78,5 @@ on an ATtiny85 or ESP32 with no external dependencies.
 
 ## Author
 
-Alex Rosito with the valuable assitance of Vera — Valley Glen, California# C++ Project
+Alex Rosito with the valuable assistance of Vera — Valley Glen, California# C++ Project
 
