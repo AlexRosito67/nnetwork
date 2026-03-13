@@ -1,0 +1,5 @@
+build/
+model.txt
+data.csv
+*.pdf
+.vscode/
