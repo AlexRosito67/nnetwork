@@ -7,8 +7,10 @@
 #include <fstream>
 class Parser
 {
-public:
+private:
     std::string _filename;
+public:
+    
     Parser(std::string filename);
     ~Parser();
     std::vector<std::vector<double>> read_data();

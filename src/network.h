@@ -18,5 +18,5 @@ public:
                const std::vector<double>& targets,
                double lr);
     void save(const std::string& filename);
-    void load(const std::string& filename);
+    int load(const std::string& filename);
 };
