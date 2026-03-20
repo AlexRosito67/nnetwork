@@ -73,6 +73,7 @@ void Network::save(const std::string& filename) {
     for (auto& layer : layers) {
         file << (int)layer.activationType << "\n";
         file << layer.neurons.size() << "\n";
+        file << layer.neurons[0].weights.size() << "\n"; // aquí
         for (auto& n : layer.neurons) {
             for (double w : n.weights)
                 file << w << " ";
@@ -81,19 +82,21 @@ void Network::save(const std::string& filename) {
     }
 }
 
-void Network::load(const std::string& filename) {
+int Network::load(const std::string& filename) {
     std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Error: Cannot open model file: " << filename << std::endl;
-        return;
+        return -1;
     }
     size_t numLayers;
     file >> numLayers;
     if (numLayers != layers.size()) {
         std::cerr << "Error: Model has " << numLayers << " layers but network has " << layers.size() << std::endl;
-        return;
+        return -1;
     }
+
     for (size_t l = 0; l < numLayers; l++) {
+        
         int actType;
         file >> actType;
         layers[l].activationType = (ActivationType)actType;
@@ -104,12 +107,23 @@ void Network::load(const std::string& filename) {
         file >> numNeurons;
         if (numNeurons != layers[l].neurons.size()) {
             std::cerr << "Error: Layer " << l << " mismatch." << std::endl;
-            return;
+            return -1;
         }
+
+        // ******** aquí
+        size_t numInputs;
+        file >> numInputs;
+        if (numInputs != layers[l].neurons[0].weights.size()) {
+            std::cerr << "Error: The model you are defining doesn't coincide with the model saved." << std::endl;
+            return -1;
+        }
+        //*********
+
         for (size_t i = 0; i < numNeurons; i++) {
             for (size_t w = 0; w < layers[l].neurons[i].weights.size(); w++)
                 file >> layers[l].neurons[i].weights[w];
             file >> layers[l].neurons[i].bias;
         }
     }
+    return 0;
 }

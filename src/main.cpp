@@ -11,6 +11,7 @@
 #include "parser.h"
 #include "network.h"
 
+
 std::string trainingFileName = "";
 std::string weightsFileName  = "";
 
@@ -237,7 +238,8 @@ void exportHeader(Network& network, const std::string& filename) {
 }
 
 int main(int argc, char* argv[]) {
-    srand(std::time(0));
+    //srand(std::time(0)); OUTDATED
+    
 
     if (argc == 1) {
         printHelp();
@@ -343,7 +345,10 @@ int main(int argc, char* argv[]) {
     Network network(dims, activations);
 
     if (!modelFileName.empty()) {
-        network.load(modelFileName);
+        if (network.load(modelFileName)!=0) {
+            std::cerr << "Error: Failed to load model from file: " << modelFileName << std::endl;
+            return 1;
+        }
         std::cout << "Model loaded from: " << modelFileName << std::endl;
     }
 

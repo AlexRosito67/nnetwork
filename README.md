@@ -1,16 +1,32 @@
 # nnetwork
 
-A lightweight neural network CLI tool written in C++ from scratch.
-Designed for regression tasks and embedded systems deployment.
+A CLI tool that trains neural networks and deploys them to microcontrollers.
+Written in pure C++17 — no frameworks, no dependencies, no runtime.
+Train on your desktop. Export a single C header. Run on any microcontroller 
+with a C compiler.
+
+## Why nnetwork?
+
+Most neural network frameworks require installing Python, pip packages, 
+and megabytes of dependencies just to get started.
+
+nnetwork is a single binary. Build it once with CMake and you're done.
+No pip, no conda, no virtual environments, no CUDA drivers.
+
+And when your model is trained, it exports to a single C header file 
+that compiles on any microcontroller with a C compiler — 
+no runtime, no interpreter, no overhead.
+
+Open source. No license restrictions.
 
 ## Features
 
 - Configurable architecture: any number of layers and neurons
 - Per-layer activation functions: `sigmoid`, `tanh`, `relu`, `leaky_relu`, `linear`, `softmax`
 - Train, validate, predict and export in one tool
-- Exports trained model as a C++ header (`nnetwork.h`) ready for microcontrollers
+- Exports trained model as a C header (`nnetwork.h`) ready for microcontrollers
 - Continue training from a saved model
-- No external dependencies — pure C++17
+
 
 ## Build
 ```bash
@@ -78,5 +94,6 @@ on an ATtiny85 or ESP32 with no external dependencies.
 
 ## Author
 
-Alex Rosito — Valley Glen, California# C++ Project
+Alex Rosito  — Valley Glen, California
+
 
