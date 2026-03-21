@@ -92,6 +92,19 @@ Originally developed to calibrate a thermistor-based thermometer using a ratiome
 circuit with an AD620N instrumentation amplifier. The exported header runs directly
 on an ATtiny85 or ESP32 with no external dependencies.
 
+## Limitations
+
+- Training supports single output only. Multi-output architectures 
+  (e.g. `-d 1,6,6,3`) are not yet supported for training — the CSV 
+  parser expects a single target column.
+
+- `predict` outputs raw values. When using `softmax` on the output layer, 
+  the values represent probabilities but argmax (predicted class) 
+  is not calculated automatically.
+
+- Designed primarily for regression tasks. Classification support 
+  is planned for a future release.
+
 ## Author
 
 Alex Rosito  — Valley Glen, California
